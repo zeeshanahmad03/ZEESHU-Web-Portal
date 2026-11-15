@@ -9,9 +9,7 @@
 ## 📸 Project Preview
 
 ### Homepage
-
 ![ZEESHU Web Portal Homepage](screenshots/homepage.png)
-
 ---
 
 ## 🚀 About The Project
