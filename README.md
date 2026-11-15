@@ -140,6 +140,5 @@ https://zeeshanahmad03.github.io/ZEESHU-Web-Portal/
 - LinkedIn: [iamzeeshan03](https://www.linkedin.com/in/iamzeeshan03)
 
 ---
-### ⭐ Support
-If you like this project, consider giving this repository a star!
+
 **Developed with ❤️ by Zeeshan Ahmed**
