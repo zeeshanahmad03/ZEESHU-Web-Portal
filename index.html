@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Portal - ZEESHAN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <div class="main" id="home">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">ZEESHU</h2>
+            </div>
+
+            <div class="hamburger" id="hamburgerBtn" onclick="toggleMobileNav()">
+                <ion-icon name="menu-outline" id="hamburgerIcon"></ion-icon>
+            </div>
+
+            <div class="menu" id="navMenu">
+                <ul>
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#service">SERVICE</a></li>
+                    <li><a href="#design">DESIGN</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input class="srch" id="searchInput" type="search" name="" placeholder="Type To Text">
+                <button class="btn" onclick="handleSearch()">Search</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1>Web Design & <br><span>Development</span> <br>Course</h1>
+            <p class="par">Master modern web development with responsive design, dynamic interactions,<br>and clean user interfaces. Start your journey with us today.</p>
+
+            <button class="cn"><a href="#service">JOIN US</a></button>
+
+            <!-- Realistic Login & Sign Up Box -->
+            <div class="form">
+                <!-- Login View -->
+                <div id="loginView">
+                    <h2>Login Here</h2>
+                    <form onsubmit="handleAuthSubmit(event, 'login')">
+                        <div class="input-group">
+                            <ion-icon name="mail-outline" class="icon-left"></ion-icon>
+                            <input type="email" id="loginEmail" placeholder="Enter Email Here" required autocomplete="email">
+                        </div>
+
+                        <div class="input-group">
+                            <ion-icon name="lock-closed-outline" class="icon-left"></ion-icon>
+                            <input type="password" id="loginPassword" placeholder="Enter Password Here" required autocomplete="current-password">
+                            <ion-icon name="eye-outline" class="pwd-toggle" id="loginPwdToggle" onclick="togglePasswordVisibility('loginPassword', 'loginPwdToggle')"></ion-icon>
+                        </div>
+
+                        <div class="form-extras">
+                            <label>
+                                <input type="checkbox" id="rememberMe"> Remember me
+                            </label>
+                            <a href="javascript:void(0)" onclick="handleForgotPassword()">Forgot Password?</a>
+                        </div>
+
+                        <div id="authAlert" class="auth-alert"></div>
+
+                        <button type="submit" class="btnn" id="loginSubmitBtn">Login</button>
+
+                        <p class="link">Don't have an account?<br>
+                            <a href="javascript:void(0)" onclick="switchAuthView('signup')">Sign up here</a>
+                        </p>
+                        <p class="liw">Log in with</p>
+
+                        <div class="icons">
+                            <a href="javascript:void(0)" title="LinkedIn"><a href="https://www.linkedin.com/in/iamzeeshan03" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></a>
+                            <a href="javascript:void(0)" title="GitHub"><a href="https://github.com/zeeshanahmad03" target="_blank"><ion-icon name="logo-github"></ion-icon></a></a>
+                            <a href="javascript:void(0)" title="Email"><ion-icon name="mail-outline"></ion-icon></a>
+                            <a href="javascript:void(0)" title="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+                            <a href="javascript:void(0)" title="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Sign Up View (hidden by default) -->
+                <div id="signupView" class="hidden-form">
+                    <h2>Sign Up Here</h2>
+                    <form onsubmit="handleAuthSubmit(event, 'signup')">
+                        <div class="input-group">
+                            <ion-icon name="person-outline" class="icon-left"></ion-icon>
+                            <input type="text" id="signupName" placeholder="Enter Full Name" required autocomplete="name">
+                        </div>
+
+                        <div class="input-group">
+                            <ion-icon name="mail-outline" class="icon-left"></ion-icon>
+                            <input type="email" id="signupEmail" placeholder="Enter Email Here" required autocomplete="email">
+                        </div>
+
+                        <div class="input-group">
+                            <ion-icon name="lock-closed-outline" class="icon-left"></ion-icon>
+                            <input type="password" id="signupPassword" placeholder="Enter Password Here" required autocomplete="new-password">
+                            <ion-icon name="eye-outline" class="pwd-toggle" id="signupPwdToggle" onclick="togglePasswordVisibility('signupPassword', 'signupPwdToggle')"></ion-icon>
+                        </div>
+
+                        <div id="signupAlert" class="auth-alert"></div>
+
+                        <button type="submit" class="btnn" id="signupSubmitBtn">Sign Up</button>
+
+                        <p class="link">Already have an account?<br>
+                            <a href="javascript:void(0)" onclick="switchAuthView('login')">Sign in here</a>
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Active Session View -->
+                <div id="loggedInView" class="hidden-form">
+                    <div class="logged-user-card">
+                        <ion-icon name="person-circle-outline" class="user-avatar-icon"></ion-icon>
+                        <h3 id="loggedInUserName">Welcome!</h3>
+                        <p id="loggedInUserEmail"></p>
+                        <span class="active-badge">Active Session</span>
+                        <button type="button" class="btnn logout-btn" onclick="handleLogout()">Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2 class="about-heading">About <span>Me</span></h2>
+            
+            <div class="about-card">
+                <p class="about-intro">
+                    AI/ML and Python developer in the making. I’m a <strong>B.Tech CSE (AI/ML)</strong> student at <strong>MACET, Patna</strong> (graduating 2027), with hands-on experience in web development and a strong interest in NLP and deep learning.
+                </p>
+
+                <p class="about-project">
+                    I’m currently building <strong>ZEESHU</strong>, a web portal that offers a <strong>Web Design & Development Course</strong>. I’m working on it end to end, from designing the database to building the backend and frontend using <strong>HTML, CSS, JavaScript, Node.js, MongoDB</strong>. Along the way I’ve learned how to structure a real application, handle user data, and debug problems the way they happen in real projects. Next, I plan to integrate an <strong>AI-powered conversational chatbot</strong> and <strong>smart recommendation system</strong> to personalize the learning experience.
+                </p>
+
+                <div class="about-exp">
+                    <h3>My experience so far:</h3>
+                    <ul>
+                        <li><strong>Web Developer Intern</strong> at <strong>Internbee</strong> (Jun 2025 to present), where I built responsive web components, optimized database queries, and implemented RESTful APIs for production features</li>
+                        <li><strong>Intern</strong> at <strong>Soft Intern</strong>, where I developed interactive frontend modules, debugged state management issues, and ensured cross-browser compatibility</li>
+                        <li><strong>Participant</strong> in a <strong>2-day hackathon at BIT</strong> (14-15 Jan 2026), where I learned to build fast and collaborate under pressure</li>
+                    </ul>
+                </div>
+
+                <div class="about-tech">
+                    <h3>Tech I work with:</h3>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>Machine Learning</span>
+                        <span>Deep Learning</span>
+                        <span>NLP</span>
+                        <span>Node.js</span>
+                        <span>MongoDB</span>
+                        <span>JavaScript</span>
+                        <span>HTML/CSS</span>
+                        <span>Web Development</span>
+                    </div>
+                </div>
+
+                <p class="about-goal">
+                    I’m looking for internship and entry-level opportunities in <strong>AI/ML, Data Science, and Full-Stack Development</strong>, where I can contribute to real products and keep learning from experienced teams.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="service" class="service-section">
+        <div class="section-container">
+            <h2 class="section-heading">My <span>Services</span></h2>
+            <p class="section-subheading">Bridging Artificial Intelligence with modern, full-stack Web Engineering.</p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><ion-icon name="code-slash-outline"></ion-icon></div>
+                    <h3>Web Development</h3>
+                    <p>Building responsive, scalable web portals with clean architectures, interactive user interfaces, and robust backend APIs.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><ion-icon name="hardware-chip-outline"></ion-icon></div>
+                    <h3>Machine & Deep Learning</h3>
+                    <p>Designing predictive models, neural networks, and data pipelines to solve real-world problems and drive data-informed decisions.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><ion-icon name="chatbubbles-outline"></ion-icon></div>
+                    <h3>NLP & AI Assistants</h3>
+                    <p>Developing Natural Language Processing solutions, sentiment analyzers, and intelligent conversational chatbots.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><ion-icon name="color-palette-outline"></ion-icon></div>
+                    <h3>UI / UX & Prototyping</h3>
+                    <p>Designing clean, intuitive, and modern UI layouts that deliver seamless user journeys and engaging digital experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design / Projects Section -->
+    <section id="design" class="design-section">
+        <div class="section-container">
+            <h2 class="section-heading">Featured <span>Projects & Design</span></h2>
+            <p class="section-subheading">A showcase of systems, intelligent applications, and web experiments.</p>
+
+            <div class="cards-grid project-grid">
+                <div class="card project-card">
+                    <div class="project-tag">Full-Stack</div>
+                    <h3>Web Portal System</h3>
+                    <p>An end-to-end web portal featuring secure user authentication, responsive dashboard, and relational database management.</p>
+                    <div class="tech-pills">
+                        <span>Node.js</span>
+                        <span>HTML/CSS</span>
+                        <span>MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="project-tag">AI / ML</div>
+                    <h3>NLP Sentiment Engine</h3>
+                    <p>Deep learning pipeline for text categorization, sentiment scoring, and real-time social or customer feedback evaluation.</p>
+                    <div class="tech-pills">
+                        <span>Python</span>
+                        <span>NLP</span>
+                        <span>PyTorch</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="project-tag">Smart Assistant</div>
+                    <h3>AI Chatbot Assistant</h3>
+                    <p>An interactive, context-aware chatbot designed to integrate into web applications for real-time customer assistance.</p>
+                    <div class="tech-pills">
+                        <span>Python</span>
+                        <span>Transformers</span>
+                        <span>APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <h2 class="section-heading">Get In <span>Touch</span></h2>
+            <p class="section-subheading">Open for internships, projects, and collaborative opportunities.</p>
+
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Let's Collaborate</h3>
+                    <p>Feel free to reach out for internship opportunities, technical discussions, or open-source projects.</p>
+
+                    <div class="info-item">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <div>
+                            <h4>Email</h4>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <a href="https://www.linkedin.com/in/iamzeeshan03" target="_blank" class="info-item-link"><div class="info-item">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            
+                        </div>
+                    </div></a>
+
+                    <a href="https://github.com/zeeshanahmad03" target="_blank" class="info-item-link"><div class="info-item">
+                        <ion-icon name="logo-github"></ion-icon>
+                        <div>
+                            <h4>GitHub</h4>
+                        </div>
+                    </div></a>
+
+                    <a href="https://share.google/mz2oGyUUi3GJZ1w9C" target="_blank" class="info-item-link"><div class="info-item">
+                        <ion-icon name="location-outline"></ion-icon>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Patna, Bihar, India (MACET)</p>
+                        </div>
+                    </div></a>
+
+                    <div class="info-item">
+                        <ion-icon name="school-outline"></ion-icon>
+                        <div>
+                            <h4>Education</h4>
+                            <p>B.Tech CSE (AI/ML) · Graduating 2027</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-card">
+                    <form id="contactForm" onsubmit="sendContactEmail(event)">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" id="contactName" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Email</label>
+                            <input type="email" id="contactEmail" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select id="contactSubject" name="subject" required>
+                                <option value="" disabled selected>Choose Inquiry Type</option>
+                                <option value="Internship Inquiry">Internship Inquiry</option>
+                                <option value="Project Inquiry">Project Inquiry</option>
+                                <option value="Collaborative Opportunity">Collaborative Opportunity</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea id="contactMessage" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <div id="contactFormAlert" class="contact-form-alert"></div>
+                        <button type="submit" class="contact-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 ZEESHU Web Portal · Crafted by Zeeshan Ahmed. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating Scroll-to-Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn" onclick="scrollToTop()" title="Scroll to top">
+        <ion-icon name="arrow-up-outline"></ion-icon>
+    </button>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        emailjs.init('rbaSQQl9pVxFgvJ8d');
+    </script>
+<script src="script.js"></script>
+</body>
+</html>
