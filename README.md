@@ -5,12 +5,9 @@
 **ZEESHU Web Portal** is a modern personal website built using HTML, CSS, and JavaScript. It showcases professional information, technical skills, services, featured projects, and an interactive login and contact interface.
 
 ---
-
 ## 📸 Project Preview
 
-### Homepage
-![ZEESHU Web Portal Homepage](screenshots/homepage.png)
----
+![ZEESHU Web Portal Homepage](Zeeframe.jpg)
 
 ## 🚀 About The Project
 
