@@ -7,7 +7,7 @@
 ---
 ## 📸 Project Preview
 
-![ZEESHU Web Portal Homepage](Zeeframe.jpg)
+![ZEESHU Web Portal Homepage](homepage.png)
 
 ## 🚀 About The Project
 
